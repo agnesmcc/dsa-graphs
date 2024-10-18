@@ -33,7 +33,12 @@ class Graph {
   }
 
   // this function accepts a vertex and removes it from the nodes property, it also updates any adjacency lists that include that vertex
-  removeVertex(vertex) {}
+  removeVertex(vertex) {
+    vertex.adjacent.forEach(v => {
+      v.adjacent.delete(vertex)
+    })
+    this.nodes.delete(vertex)
+  }
 
   // this function returns an array of Node values using DFS
   depthFirstSearch(start) {}
