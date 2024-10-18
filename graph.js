@@ -45,9 +45,12 @@ class Graph {
     const visited = new Set()
     const result = []
     const traverse = (vertex) => {
+      // if the vertex has already been visited, return
       if (visited.has(vertex)) return
+      // add the vertex to the visited set and the result array
       visited.add(vertex)
       result.push(vertex.value)
+      // traverse all the adjacent vertices
       vertex.adjacent.forEach(v => traverse(v))
     }
     traverse(start)
@@ -61,11 +64,17 @@ class Graph {
     const queue = [start]
     visited.add(start)
     while (queue.length) {
+      // shift the first vertex off the queue
       const vertex = queue.shift()
+      // add the value of the vertex to the result array
       result.push(vertex.value)
+      // loop through adjacent vertices
       vertex.adjacent.forEach(v => {
+        // if the adjacent vertex has not been visited
         if (!visited.has(v)) {
+          // mark the vertex as visited
           visited.add(v)
+          // add the vertex to the queue to be processed later
           queue.push(v)
         }
       })
